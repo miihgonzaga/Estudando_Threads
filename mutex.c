@@ -12,6 +12,7 @@ entendendo o código:
         *e sendo modificadas ao longo da execução do programa
 
     DEVE TRAVAR O MENOR TRECHO POSSÍVEL (regiao critica)
+    como a exclusão mútua está sendo aplicada, o resultado é sempre 0!!
 
 */
 
