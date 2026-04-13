@@ -1,5 +1,5 @@
 /* código 5 - manipulando arquivos (leitura e modificações)
-    miriam gonzaga - 12.04.26
+    objetivo: criar 3 arquivos para a questão 2
 
 *ideia básica de arquivos em C:
     três passos: abrir -> ler/escrever -> fechar
@@ -22,23 +22,36 @@
 #include <stdlib.h>
 
 int main(){// criando arq txt:
-    FILE *f = fopen("leitura_arquivos.txt", "w"); //criar e abrir
+    int N = 3; // número de arquivos
+
+    //nomes dos arquivos:
+    char *arquivos[] = {
+    "arquivo1.txt",
+    "arquivo2.txt",
+    "arquivo3.txt"
+    };
 
     //conteúdo do arquivo:
     int num_linha = 0; // inteiro pro número da linha
     char cod_linha[30], cidade[50], horario[20]; // atualização de informacoes da linha
 
-    // receber entradas pro arquivo: (escrita do arquivo)
-    while (num_linha != -1){ // enquanto não for eof, vai escrever no novo arquivo
-        scanf("%d", &num_linha);
-        
-        if (num_linha != -1) { // se não for -1, executa a leitura da entrada
-        scanf("%s %s %s", cod_linha, cidade, horario); //leitura da entrada
-        fprintf(f, "%d\n%s %s %s\n", num_linha, cod_linha, cidade, horario); // escreve no arquivo 
+    for (int i = 0; i < N; i++){
+        // receber entradas pro arquivo: (escrita do arquivo)
+        while (num_linha != -1){ // enquanto não for eof, vai escrever no novo arquivo
+            scanf("%d", &num_linha);
+            
+            if (num_linha != -1) { // se não for -1, executa a leitura da entrada
+                FILE *f = fopen(arquivos[i], "a"); //criar e abrir
+                scanf("%s %s %s", cod_linha, cidade, horario); //leitura da entrada
+                fprintf(f, "%d\n%s %s %s\n", num_linha, cod_linha, cidade, horario); // escreve no arquivo 
+            
+                fclose(f); // fecha o arquivo
+
+            }
         }
-    }
+        num_linha = 0; 
     
-    fclose(f); // fecha o arquivo
+    }
 
     return 0; //pthread_exit(NULL); // encerra a main
 
